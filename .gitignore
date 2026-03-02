@@ -1,0 +1,11 @@
+# Exclude the hardware-specific config (contains drive UUIDs)
+hardware-configuration.nix
+
+# Exclude secrets if you store them in a specific file
+secrets.nix
+*.secret
+
+# Exclude temporary build files and result links
+result
+result-*
+.direnv/
