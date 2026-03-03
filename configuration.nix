@@ -33,6 +33,12 @@
     "quay.io"
   ];
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
   #Experimental Flake Switch
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

@@ -9,6 +9,7 @@
         flatpak
         neofetch
         distrobox
+        vscode
     ];
 
     #Steam App

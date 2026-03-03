@@ -9,11 +9,12 @@
   outputs = { self, nixpkgs, ... }@inputs: {
     # Replace 'your-hostname' with your actual system hostname
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux"; # Use "aarch64-linux" if on ARM (like Raspberry Pi)
+      # Use "aarch64-linux" if on ARM (like Raspberry Pi)
+      system = "x86_64-linux";
       modules = [
         # This pulls in your main configuration file
-        ./configuration.nix
         # Note: hardware-configuration.nix must be in this folder too
+        ./configuration.nix
       ];
     };
   };
