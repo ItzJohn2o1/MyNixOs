@@ -1,5 +1,6 @@
 # Exclude the hardware-specific config (contains drive UUIDs)
 hardware-configuration.nix
+SSH-Key.txt
 
 # Exclude secrets if you store them in a specific file
 secrets.nix
