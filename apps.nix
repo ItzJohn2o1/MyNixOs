@@ -6,10 +6,8 @@
         podman
         boxbuddy
         git
-        flatpak
-        neofetch
         distrobox
-        vscode
+        nodejs
     ];
 
     #Steam App

@@ -5,18 +5,27 @@
     # Specify the version of NixOS you want to use
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
 
-
+  home-manager = {
+      url = "github:nix-community/home-manager/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
-    # Replace 'your-hostname' with your actual system hostname
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      # Use "aarch64-linux" if on ARM (like Raspberry Pi)
       system = "x86_64-linux";
       modules = [
-        # This pulls in your main configuration file
-        # Note: hardware-configuration.nix must be in this folder too
         ./configuration.nix
+
+        # --- ADD THIS LINE BELOW ---
+        home-manager.nixosModules.home-manager
+        # ---------------------------
+
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.morajohn = import ./home.nix;
+        }
       ];
     };
   };
