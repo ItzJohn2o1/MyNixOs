@@ -1,47 +1,52 @@
 { pkgs, ... }: {
   home.username = "morajohn";
   home.homeDirectory = "/home/morajohn";
-  home.stateVersion = "24.11"; # Match your current NixOS version
+  home.stateVersion = "24.11";
 
-  programs.home-manager.enable = true;
+  # This is the correct way to write the file in Nix
+  home.file.".continue/config.json".text = builtins.toJSON {
+  name = "Local";
+  version = "1.0.0";
+  schema = "v1";
 
- home.file.".continue/config.json".text = builtins.toJSON {
-      embeddingsProvider = {
-        model = "nomic-embed-text";
-        provider = "ollama";
-      };
-      models = [
-        {
-          apiBase = "http://192.168.50.242:11434";
-          model = "qwen2.5-coder:1.5b";
-          provider = "ollama";
-          title = "Ollama - Chat";
-        }
-      ];
-      tabAutocompleteModel = {
-        apiBase = "http://192.168.50.242:11434";
-        model = "qwen2.5-coder:1.5b";
-        provider = "ollama";
-        title = "Ollama - Autocomplete";
-      };
-    };
+  models = [
+    {
+      # 2026 update requires BOTH to avoid the "missing title" error
+      title = "Qwen";
+      name = "Qwen";
 
-  # Configure VS Code with extensions
+      provider = "ollama";
+      model = "qwen2.5-coder:1.5b";
+      apiBase = "http://192.168.50.242:11434";
+
+      # Explicit roles are mandatory for the model to activate
+      roles = ["chat" "edit" "apply"];
+    }
+  ];
+
+  tabAutocompleteModel = {
+    title = "Autocomplete";
+    name = "Autocomplete";
+    provider = "ollama";
+    model = "qwen2.5-coder:1.5b";
+    apiBase = "http://192.168.50.242:11434";
+  };
+};
+
+
   programs.vscode = {
     enable = true;
-    # Ensures extensions are managed ONLY by Nix
     mutableExtensionsDir = false;
     extensions = with pkgs.vscode-extensions; [
-      continue.continue      # Continue (LLM Assistant)
-      dbaeumer.vscode-eslint # ESLint
-      bbenoist.nix           # Nix language support
-      catppuccin.catppuccin-vsc #catppuccin theme
+      continue.continue
+      dbaeumer.vscode-eslint
+      bbenoist.nix
+      catppuccin.catppuccin-vsc
     ];
     userSettings = {
       "editor.formatOnSave" = true;
       "continue.telemetryEnabled" = false;
       "workbench.colorTheme" = "Catppuccin Macchiato";
-
     };
   };
 }
