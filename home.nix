@@ -1,9 +1,14 @@
 { pkgs, ... }: {
+
+imports = [
+  ./plasma.nix
+];
+
   home.username = "morajohn";
   home.homeDirectory = "/home/morajohn";
   home.stateVersion = "24.11";
 
-  # This is the correct way to write the file in Nix
+  # Setup for ollama on vscode
   home.file.".continue/config.json".text = builtins.toJSON {
   name = "Local";
   version = "1.0.0";
@@ -49,4 +54,5 @@
       "workbench.colorTheme" = "Catppuccin Macchiato";
     };
   };
+
 }

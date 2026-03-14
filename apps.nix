@@ -2,9 +2,7 @@
 
     # Essentials
     environment.systemPackages = with pkgs; [
-        discord
         podman
-        boxbuddy
         git
         distrobox
         nodejs
