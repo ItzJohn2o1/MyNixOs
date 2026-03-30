@@ -6,6 +6,9 @@
         git
         distrobox
         nodejs
+        waybar
+        wofi
+        hyprpaper
     ];
 
     #Steam App

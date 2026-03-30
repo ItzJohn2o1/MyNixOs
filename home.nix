@@ -2,6 +2,7 @@
 
 imports = [
   ./plasma.nix
+  ./hyprland.nix
 ];
 
   home.username = "morajohn";

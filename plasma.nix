@@ -422,30 +422,3 @@
     };
   };
 }
-
-
-#programs.plasma = {
- #   enable = true;
-    
-    # Set the Global Theme (e.g., Breeze Dark or a custom one)
-  #  workspace = {
-   #   clickItemTo = "select"; # Single click to select, double to open
-    #  lookAndFeel = "org.kde.breezedark.desktop";
-     # cursorTheme = "Breeze_Snow";
-      #wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Patina/contents/images/5120x2880.png";
-   # };
-
-    #panels = [
-     # {
-      #  location = "bottom";
-       # height = 36;
-        #widgets = [
-         # "org.kde.plasma.kickoff" # Start Menu
-          #"org.kde.plasma.icontasks" # Task Manager
-          #"org.kde.plasma.marginsseparator"
-         # "org.kde.plasma.systemtray"
-         # "org.kde.plasma.digitalclock"
-        #];
-     # }
-   # ];
- # };
